@@ -79,7 +79,7 @@ $.getJSON('everything.json', function(data) {
 
 });  //end JSON-everything import and interactions
 
-let counter=0;
+// let counter=0;
 let dragCounter=0;
 let angleTrack = [];
 let insertHere = document.createDocumentFragment();
@@ -150,154 +150,80 @@ $.getJSON('nothing.json', function(data) {
 
 }); //end JSON—nothing import and interactions
 
-var dragnavHeight, contentHeight, contentOffset;
+
+var dragnavHeight, contentHeight, contentOffset, el, size;
 const mq = window.matchMedia("(max-width: 768px)");
+
+function loaded() {
+  if(mq.matches) {
+    el = document.getElementById('load-mobi');
+    size = el.getBoundingClientRect();
+  } else {
+    el = document.getElementById('load-desk');
+    size = el.getBoundingClientRect();
+  }
+  dragnavHeight = size.height;
+
+    //dynamic sizing of nav and footer areas
+    $(".dragbox, .footer, .nav-container").height(dragnavHeight);
+
+    //dynamic sizing of content area to match nav, currently with 15px margin on either side
+    var contentHeight = $(window).height()-(dragnavHeight*2)-35;
+    $(".content").height(contentHeight);
+    var contentOffset = $(".dragbox").height() + 15;
+    $(".content").css("top", contentOffset);
+}
 
 $(document).ready(function() {
 
-  if(mq.matches) {
-    dragnavHeight = $(".mobi-nav").height();
-    $(".desk").hide();
-    $(".mobi").show();
-  } else {
-    dragnavHeight = $(".desk-nav").height();
-    $(".mobi").hide();
-    $(".desk").show();
-  }
-  //dynamic sizing of nav and footer areas
-  $(".dragbox, .footer, .nav-container").height(dragnavHeight);
-
-  //dynamic sizing of content area to match nav, currently with 15px margin on either side
-  var contentHeight = $(window).height()-(dragnavHeight*2)-35;
-  $(".content").height(contentHeight);
-  var contentOffset = $(".dragbox").height() + 15;
-  $(".content").css("top", contentOffset);
-
-
- //change nav color on hover if not current section
- $(".e-svg").hover(function() {
-   if(!$(".flip-card").hasClass("e")) {
-     $(this).addClass("hovering");
-   }
- }, function() {
-   $(this).removeClass("hovering");
- })
-
- $(".n-svg").hover(function() {
-  if(!$(".flip-card").hasClass("n")) {
-    $(this).addClass("hovering");
-  }
-}, function() {
-  $(this).removeClass("hovering");
-})
-
-//click navigation interaction——————————————————————
-$(".nav-nothing").click(function() {
-  $('.drawer').removeClass("opened");
-  if(!$(".flip-card").hasClass("n")) {
-    $(".dragbox").addClass("n");
-    $(".flip-card").removeClass("e");
-    $(".flip-card").addClass("n");
-    $(".nav-svg").removeClass("hovering");
-    $(".nothing-back").hide();
-  } 
-});
-
-$(".nav-everything").click(function() {
-  $('.drawer').removeClass("opened");
-  if(!$(".flip-card").hasClass("e")) {
-    $(".dragbox").removeClass("n");
-    $(".flip-card").addClass("e");
-    $(".flip-card").removeClass("n");
-    $(".nav-svg").removeClass("hovering");
-
-    closeElements();
-    $(".content-inner").animate({scrollTop: 0}, 100);
-  }
-
-});
-
-//mobi about/programming nav—————————————————
-$(".hamburger").click(function() {
-  $(".mobi.span").css("color", "#000");
-    if(!$(".flip-nav").hasClass("a_p")) {
-      $(".flip-nav").removeClass("risd_gd");
-      $(".flip-nav").addClass("a_p");
-    } else {
-      $(".flip-nav").removeClass("a_p");
-      $(".flip-nav").addClass("risd_gd");
-    }
-    $(".programming, .about").removeClass("opened");
-});
-
-//mobi drawer pullout——————————————
-$("#about").click(function() {
-  $(".mobi.span").css("color", "#000");
-    $(".programming").removeClass("opened");
-    if(!$(".about").hasClass("opened")) {
-      $(this).css("color", "#BAAAFE");
-      $(".about").addClass("opened");
-    } else {
-      $(this).css("color", "#000");
-      $(".about").removeClass("opened");
-    }
-    $(".pullout-content").animate({scrollTop: 0}, 300);
-});
-
-$("#programming").click(function() {
-  $(".mobi.span").css("color", "#000");
-  $(".about").removeClass("opened");
-  if(!$(".programming").hasClass("opened")) {
-    $(this).css("color", "#BAAAFE");
-    $(".programming").addClass("opened");
-  } else {
-    $(this).css("color", "#000");
-    $(".programming").removeClass("opened");
-  }
-  $(".pullout-content").animate({scrollTop: 0}, 300);
-})
-
-//desktop drawer pullout————————————
-$(".spine").click(function() {
-  let thisPullout = $(this).closest(".drawer");
-  if($(thisPullout).hasClass("opened")) {
-    $(thisPullout).removeClass("opened");
-  } else {
+  //click navigation interaction——————————————————————
+  $(".nav-nothing").click(function() {
     $('.drawer').removeClass("opened");
-    $(".pullout-content").animate({scrollTop: 0}, 100);
-    $(thisPullout).addClass("opened");
+    if(!$(".flip-card").hasClass("n")) {
+      $(".dragbox").addClass("n");
+      $(".flip-card").removeClass("e");
+      $(".flip-card").addClass("n");
+      $(".nav-svg").removeClass("hovering");
+      $(".nothing-back").hide();
+    } 
+  });
+
+  $(".nav-everything").click(function() {
+    $('.drawer').removeClass("opened");
+    if(!$(".flip-card").hasClass("e")) {
+      $(".dragbox").removeClass("n");
+      $(".flip-card").addClass("e");
+      $(".flip-card").removeClass("n");
+      $(".nav-svg").removeClass("hovering");
+
+      closeElements();
+      $(".content-inner").animate({scrollTop: 0}, 100);
+    }
+
+  });
+
+  if(mq.matches) {
+    mobiFunc();
+  } else {
+    deskFunc();
   }
-});
-
-
-
 
 }); //end document ready
 
 $(window).resize(function() {
+  setTimeout(function() {
+    loaded();
+  }, 100);
 
   if(mq.matches) {
-    dragnavHeight = $(".mobi-nav").height();
-    $(".desk").hide();
-    $(".mobi").show();
+    mobiFunc();
   } else {
-    dragnavHeight = $(".desk-nav").height();
-    $(".mobi").hide();
-    $(".desk").show();
+    deskFunc();
   }
-  //dynamic sizing of nav and footer areas
-  $(".dragbox, .footer, .nav-container").height(dragnavHeight);
 
-  //dynamic sizing of content area to match nav, currently with 15px margin on either side
-  var contentHeight = $(window).height()-(dragnavHeight*2)-35;
-  $(".content").height(contentHeight);
-  var contentOffset = $(".dragbox").height() + 15;
-  $(".content").css("top", contentOffset);
-
-
-    // counter++;
-    // checkWidth(cWidth);
 });
+
+
 
 function openElement(that) {
     $(".grid_element").removeClass("active");    
@@ -320,53 +246,81 @@ function closeElements() {
   $(".grid").removeClass("opened");
 }
 
-function intoView(){
-  $(".dragged").each(function(){
-    let calcWidth=95;
-    let thisWidth=Math.floor(Math.random()*calcWidth);
-    let calcHeight=300;
-    let thisHeight=Math.floor(Math.random()*calcHeight);
-    $(this).css({"left":"" + thisWidth + "%"});
+function mobiFunc() {
+  $(".desk").hide();
+  $(".mobi").show();
+
+  //mobi about/programming nav—————————————————
+  $(".hamburger").click(function() {
+    $(".mobi.span").css("color", "#000");
+      if(!$(".flip-nav").hasClass("a_p")) {
+        $(".flip-nav").removeClass("risd_gd");
+        $(".flip-nav").addClass("a_p");
+      } else {
+        $(".flip-nav").removeClass("a_p");
+        $(".flip-nav").addClass("risd_gd");
+      }
+      $(".programming, .about").removeClass("opened");
+  });
+
+  //mobi drawer pullout——————————————
+  $("#about").click(function() {
+    $(".mobi.span").css("color", "#000");
+      $(".programming").removeClass("opened");
+      if(!$(".about").hasClass("opened")) {
+        $(this).css("color", "#BAAAFE");
+        $(".about").addClass("opened");
+      } else {
+        $(this).css("color", "#000");
+        $(".about").removeClass("opened");
+      }
+      $(".pullout-content").animate({scrollTop: 0}, 300);
+  });
+
+  $("#programming").click(function() {
+    $(".mobi.span").css("color", "#000");
+    $(".about").removeClass("opened");
+    if(!$(".programming").hasClass("opened")) {
+      $(this).css("color", "#BAAAFE");
+      $(".programming").addClass("opened");
+    } else {
+      $(this).css("color", "#000");
+      $(".programming").removeClass("opened");
+    }
+    $(".pullout-content").animate({scrollTop: 0}, 300);
   })
 }
 
+function deskFunc() {
+  $(".mobi").hide();
+  $(".desk").show();
 
+   //change nav color on hover if not current section
+ $(".e-svg").hover(function() {
+  if(!$(".flip-card").hasClass("e")) {
+    $(this).addClass("hovering");
+  }
+}, function() {
+  $(this).removeClass("hovering");
+})
 
-// let cWidth = window.matchMedia("(max-width: 600px)")
-// checkWidth(cWidth);
+$(".n-svg").hover(function() {
+ if(!$(".flip-card").hasClass("n")) {
+   $(this).addClass("hovering");
+ }
+}, function() {
+ $(this).removeClass("hovering");
+})
 
-// function checkWidth(cWidth) {
-//   console.log("checking");
-
-//   if (cWidth.matches) { // If media query matches
-//     $(".nothing-images").removeAttr("style");
-//   } else{
-//     counter++;
-//     if(counter<2){
-//     setPos();
-//     $(".nothing-images").removeClass("dragged");
-//   }
-//   }
-// }
-
-// function setPos(){
-//   $(".nothing-images").each(function(){
-//     let calcWidth=95;
-//     let thisWidth=Math.floor(Math.random()*calcWidth);
-//     let calcHeight=300;
-//     let thisHeight=Math.floor(Math.random()*calcHeight);
-//     $(this).css({"left":"" + thisWidth + "%","top":"" + thisHeight + "vh","position":"absolute"});
-//   })
-// }
-
-// let resizeTimer;
-
-// $(window).on('resize', function(e) {
-
-//   clearTimeout(resizeTimer);
-//   resizeTimer = setTimeout(function() {
-//     console.log("resizing stopped");
-//     counter=0;
-//   }, 300);
-
-// });
+    //desktop drawer pullout————————————
+  $(".spine").click(function() {
+    let thisPullout = $(this).closest(".drawer");
+    if($(thisPullout).hasClass("opened")) {
+      $(thisPullout).removeClass("opened");
+    } else {
+      $('.drawer').removeClass("opened");
+      $(".pullout-content").animate({scrollTop: 0}, 100);
+      $(thisPullout).addClass("opened");
+    }
+  });
+}

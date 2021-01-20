@@ -53,8 +53,9 @@
         "class": "2021",
         "title": "The Discreet Life of the Emoji",
         "descrip": "This website traces a single emoji backwards, through the screen, through its code, to the mines of the Atacama Desert. It offers a materialist critique of a symbol, exposing the mechanics behind a glyph.",
-        "hero": "epstein_everett_1.png",
-        "image2": "<iframe class='lazy' data-src='https://player.vimeo.com/video/502024622' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen></iframe>",
+        "hero": "epstein_everett_1.jpg",
+        "image2": "epstein_everett_1.png",
+        "image3": "<iframe class='lazy' data-src='https://player.vimeo.com/video/502024622' frameborder='0' allow='autoplay; fullscreen; picture-in-picture' allowfullscreen></iframe>",
         "link": "https://discreetemoji.glitch.me/"
     },
 

@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>GD MFA Biennial 2021</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico"/>
+    <title>RISD GD MFA Biennial 2021</title>
 
     <link rel="stylesheet" href="style.css" />
     <script
@@ -18,21 +18,19 @@
       integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
       crossorigin="anonymous"
     ></script>
-    <script src="jquery.ui.touch-punch.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js" integrity="sha512-0bEtK0USNd96MnO4XhH8jhv3nyRF0eK87pJke6pkYf3cM0uDIhNJy9ltuzqgypoIFXw3JSuiy04tVk4AjpZdZw==" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js"></script>
     <script src="script.js"></script>
   </head>
   <body>
     <div class="dragnav">
-      <!-- box slider -->
+      <!-- purple box slider -->
       <div class="dragbox at-everything"></div>
 
       <!-- title text -->
       <div class="nav-container desk">
         <div class="nav-block nav-everything">
-          <img class="nav-svg desk-nav e-svg"
-            src="assets/asset-e.svg"
-          />
+          <img id="load-desk" class="nav-svg desk-nav e-svg" onload="loaded()" src="assets/asset-e.svg"/>
         </div>
         <div class="nav-block nav-nothing">
           <img class="nav-svg desk-nav n-svg"
@@ -44,7 +42,7 @@
       <!-- mobile nav -->
       <div class="nav-container mobi">
         <div class="nav-block nav-everything">
-          <img class="nav-svg mobi-nav e-svg" id="mobi-navi" src="assets/mobile-nav-e.svg"/>
+          <img id="load-mobi" class="nav-svg mobi-nav e-svg" onload="loaded()" src="assets/mobile-nav-e.svg"/>
         </div>
         <div class="nav-block nav-slash">
           <img class="nav-svg mobi-nav" src="assets/mobile-nav-slash.svg"/>
@@ -55,7 +53,6 @@
         
       </div>
     </div>
-
     <div class="content">
       <div class="flip-card e">
         <div class="content-inner content-everything">
@@ -140,22 +137,37 @@
       </div>
       <div class="pullout-content">
         <h2>Everything You Can Think Of; Nothing You Want</h2>
-        <p class="subhead">Overview</p>
-        <p>The theme for the 2020 graphic design biennial is “Everything You Can Think Of; Nothing You Want.”</p>
+        <div class="curatorial-image">
+          <img src="assets/curatorial.jpeg"/>
+          <p class="cura-cap">Drag Queen Anahi Santos falls asleep during a livestream performance in April 2020</p>
+        </div>
 
-        <p>“Everything You Can Think Of” and “Nothing You Want” correspond to two separate but related bodies of work—like two sides of a coin, informing one another—housed in one biennial. The show seeks to highlight the tension of a graduate-level practice: the professional and educational; individual and institutional; commercial and critical. Students can submit to both bodies of work.</p>
-        
-        <p class="subhead">Everything You Can Think Of</p>
-        <p>“Everything You Can Think Of” represents graphic design as a wide field. It speaks to the multimedia, multidisciplinary work produced by RISD students from their varied perspectives and modes of practice. “Everything” also invokes the program’s ambition and rigor. RISD students are constantly producing and publishing their knowledge and creative work; we are always making everything we can think of. “Everything” ought to be an imaginative and diverse show, flaunting the ingenuity and extensive skill of RISD graphic designers.</p>
+        <div class="epigraph">
+          <p class="epi-p">I love her lack of energy, go girl give us nothing!</p>
+          <p class="cura-cap">—YouTube comment on a Dua Lipa performance</p>
+        </div>
 
-        <p>For “Everything”, each student is limited to one submission. The submission must have been included in your RISD application or produced for a RISD class or event. Submit work that you are proud to have created at RISD: work that is portfolioworthy, work RISD would want to share on social media, etc. Any format is acceptable (book, motion, web, etc.), but it must evidently be graphic design. You may include didactic text or other context.</p>
+        <div class="cura-text">
+          <p>The 2021 Graphic Design MFA Biennial is about everything and nothing. <i>Everything You Can Think Of; Nothing You Want</i> is a reflection of our varied experiences in this graduate program: what it is and what it is not.</p>
 
-        <p class="subhead">Nothing You Want</p>
-        <p>RISD values students’ productive capacity. However, many things important to wellness or daily living are not productive: rest, nourishment, social activity, child care, appointments, and self-care. “Nothing You Want” is critical of how the institution conceals and devalues what does not produce value in its name. “Nothing” seeks documentation of ‘unproductive’ things. Submissions might include performance, audio, writing, graphic design, objects, napping, truancy, crying, protest, theft—anything ‘worthless’ to the institution.</p>
+          <p><i>Everything You Can Think Of</i> and <i>Nothing You Want</i> correspond to two separate but related bodies of work—like two sides of a coin, informing one another—housed in one virtual biennial. Accordingly, the show may exhibit graphic design as would any traditional biennial, yet it may also make visible those things obscured by the polished pieces on display: the exertion, the exhaustion, the expense.</p>
 
-        <p>“Nothing” is a refusal: a rejection of the biennial format, of the expectation that students exhibit work so that RISD’s branding, recruiting, and rankings might benefit. “Nothing” asks us to reassess who a biennial ought to serve and what a biennial ought to contain. And further, “Nothing” speaks to a need to reexamine what the industry at large finds valuable. This show consequently also abdicates the task of curation, instead offering unlimited, unrestricted space for submissions. Ultimately, “Nothing You Want” reveals the cost of “Everything You Can Think Of.”</p>
+          <p><i>Everything You Can Think Of</i> is abundance. Possibility and imagination. This exhibition represents a sliver of the output of the diverse, ambitious graduate student cohort at the Rhode Island School of Design. We are expanding our field through formal experimentation and critical writing. “Everything You Can Think Of” reflects the idealized MFA experience: The institution provides freedom, knowledge, and equipment for students to produce beautiful portfolios, pursue interesting research, and cultivate meaningful practices—but the experience often comes at great cost.</p>
 
-        <p>This shadow show is unlimited and uncurated. For “Nothing,” students can submit infinite items, produced at any time, in any format.</p>
+          <p><i>Nothing You Want</i> is everything unseen. Artifacts of what students cannot reveal. Another sliver: financial precarity, sleepless nights, alienation, loneliness, frustration, depression, fatigue, burnout, anxiety, anger, shame, doubt, guilt, debt—things ugly and untidy, yet common in our graduate program and others, surely. The material on display reveals that students perform a calculus of neglect, where sleep, food and community are weighed against work, labor and production.</p>
+
+          <p>A word of caution. Do not let one side of the show distract from the true message. We both admire the work on display and endorse the expressions of complaint. This show is a slim volume of the RISD GD MFA program in totality—beauty, ugliness, gaps, redactions, and erasures included. The message of the show exists in the tension between the two sides, including the complicity of graduate students.</p>
+
+          <p>Exhibiting <i>Nothing You Want</i> is a precarious act. There is an imbalance of power between faculty, administration, and students. We are committed to challenging this imbalance but in so doing are left vulnerable and risk misinterpretation. We intend transformation, not malice, not insult. These grievances are revealed with care and consideration to induce positive change. The argument of <i>Everything You Can Think Of; Nothing You Want</i> is that the only way forward is transparency, testimony and open dialogue.</p>
+
+          <p>2020 and its attendant crises have shown us that—while risk-taking and failure are encouraged—<i>failings</i> are unacceptable within the university. In the midst of burnout, physical and mental illness, and a global pandemic the institution has not sufficiently revised expectations regarding production and productivity. But as our shadow biennial, <i>Nothing You Want</i>, establishes: work is not just a product; it is also labor. 2020 has revealed that RISD students have inherited unsustainable systems which ignore or scorn student wellbeing. What we reluctantly accepted a year ago seems unendurable now. There must be a better way.</p>
+
+          <p>Our programming attempts to reconcile what we endure and what we desire. Our speakers, all RISD alumni, will offer reimaginings of the MFA program. Many have become educators after graduating and they have seen both sides of MFA education; they offer perspectives on how institutions can care for students and faculty alike.</p>
+
+          <p>Traditionally, a biennial is a moment to pause and reflect on the ideas and concerns of the RISD graphic design students during the past two years. Presenting the work of the MFA cohort in 2021 without reckoning with the material and emotional conditions of those same students would be a dereliction. We owe more to one another and to ourselves.</p>
+
+          <p>We join with <a href="https://cueartfoundation.org/events/artcovidedu-studio-art-mfas-and-the-cost-of-remote-learning" target="_blank">students</a> <a href="https://www.fuc-series.org/" target="_blank">across</a> <a href="https://www.artforum.com/news/as-curricula-moves-online-yale-art-students-demand-tuition-refund-82531" target="_blank">the</a> <a href="http://www.gsamfa.net/" target="_blank">world</a> in saying: institutions must change if we are to reconcile everything and nothing. We want their full energy committed to our cause. Go girl, give us everything!</p>
+        </div>
       </div>
     </div>
 

@@ -1,7 +1,9 @@
 @font-face {
   font-family: "Apercu-Condensed";
   src: url("assets/apercu-condensed.otf")
-      format("opentype")
+      format("opentype");
+  font-weight:normal;
+  font-style: normal;  
 }
 
 @font-face {
@@ -11,9 +13,19 @@
 }
 
 @font-face {
-  font-family: "Apercu-Condensed-Bold";
+  font-family: "Apercu-Condensed";
   src: url("assets/apercu-condensed-bold.otf")
       format("opentype");
+  font-weight:bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Apercu-Condensed";
+  src: url("assets/apercu-condensed-italic.otf")
+      format("opentype");
+  font-weight:normal;
+  font-style: italic;
 }
 
 * {
@@ -51,14 +63,13 @@ body {
   left: 50%;
   top: 7px;
   transform: translateX(-50%);
+  
 }
 
 .nav-block {
   margin: 0;
-  /* width: fit-content; */
   position: absolute;
   top: 10;
-  /* height: fit-content; */
   cursor: pointer;
   display: inline-block;
 }
@@ -272,7 +283,8 @@ h1 {
 h3 {
   display: inline-block;
   margin: 0 1%;
-  font-family: 'Apercu-Condensed-Bold', Arial, Helvetica, sans-serif;
+  /* font-family: 'Apercu-Condensed-Bold', Arial, Helvetica, sans-serif; */
+  font-weight: bold;
 }
 
 .description p {
@@ -323,7 +335,7 @@ iframe {
 }
 
 .scroll-graphic{
-  width: 30px;
+  width: 20px;
 }
 
 .close{
@@ -403,6 +415,7 @@ h4 {
   transition: left 0.3s ease-in-out, right 0.3s ease-in-out, bottom 0.5s ease-in-out;
   display: flex;
   z-index: 5;
+  background: #BAAAFE;
 }
 
 .programming {
@@ -427,7 +440,8 @@ h4 {
 .pullout-content {
   flex: 1;
   height: 100%;
-  background: #BAAAFE;
+  max-width: 750px;
+  margin: 0 auto;
   scrollbar-width: none;
   overflow-y: scroll;
   padding: 5% 8%;
@@ -439,17 +453,33 @@ h2 {
   font-family: 'Apercu-Condensed-Light', Arial, Helvetica, sans-serif;
 }
 
-.subhead:first-of-type {
-  margin-top: 0;
+
+.curatorial-image {
+  width: 100%;
+  margin: 30px 0;
 }
 
-.about .subhead {
+.curatorial-image img {
+  width: 100%;
+}
+
+
+.cura-cap {
+  font-size: 17px;
+  margin-top: 5px;
+}
+
+.epigraph {
+  padding: 5%;
+}
+
+.epi-p {
+  font-style: italic;
   font-size: 28px;
-  text-transform: uppercase;
-  margin-top: 8%;
+  margin-bottom: 7px;
 }
 
-.about p {
+.cura-text p {
   font-size: 21px;
   margin-bottom: 4%;
   line-height: 1.2;
@@ -549,32 +579,11 @@ h2 {
   align-items: center;
   justify-content: center;
   display: inline-block;
-
-  /* -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transition: transform 1s;
-  -moz-transition: transform 1s;
-  -o-transition: transform 1s;
-  transition: transform 1s;
-  transform-style: preserve-3d; */
 }
 
 .nothing-images div {
-  /* position: absolute;
-  max-width: 800px;
-  max-height: 900px; */
   width: 45vw;
-  /* height: auto; */
-  /* height: 100%; */
   display: inline-block;
-/* 
-  display: flex;
-  align-items: center;
-  justify-content: center; */
-
-  /* -webkit-backface-visibility: hidden;
-  backface-visibility: hidden; */
-  /* cursor: pointer; */
 
   -webkit-transition: transform 1s;
   -moz-transition: transform 1s;
@@ -582,26 +591,17 @@ h2 {
   transition: transform 1s;
 }
 
-/* .nothing-front {
-  -webkit-transform: rotateY(0deg);
-  transform: rotateY(0deg);
-} */
 
 .nothing-back {
   background-color: #fff;
-  /* -webkit-transform: rotateY(180deg);
-  transform: rotateY(180deg); */
   padding: 10px;
   margin-top: -5px;
   display: none;
 }
 
 .nothing-front img {
-  /* width: auto; */
   max-height: 100%;
   max-width: 100%;
-  /* height: 100%; */
-  /* object-fit: contain; */
   pointer-events: none;
 }
 
@@ -609,14 +609,6 @@ h2 {
   pointer-events: none;
 }
 
-/* .nothing-images p {
-  width: 90%;
-  transform: rotateY(180deg);
-  background: #fff;
-  position: absolute;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-} */
 
 .mobi {
   display: none;
@@ -626,11 +618,6 @@ h2 {
   .desk {
     display: none;
   }
-
-  /* .mobi {
-    display: block;
-  } */
-
 
   .dragbox {
     width: 55%;
@@ -728,7 +715,7 @@ h2 {
 
   .flip-nav {
     position: relative;
-    width: 100%;
+    width: 75%;
     height: 100%;
     -webkit-transition: transform 1s;
     -moz-transition: transform 1s;
@@ -788,15 +775,24 @@ h2 {
   }
 
   .pullout-content p:last-of-type {
-    margin-bottom: 15%;
+    margin-bottom: 10%;
+  }
+
+  .cura-cap {
+    font-size: 16px;
+  }
+  
+  .epi-p {
+    font-size: 24px;
+    margin-bottom: 7px;
+  }
+  
+  .cura-text p {
+    font-size: 19px;
   }
 
   .schedule {
     margin-bottom: 15%;
-  }
-
-  .about p {
-    font-size: 19px;
   }
 
   .nothing-images div {
@@ -804,4 +800,10 @@ h2 {
   }
 
  
+}
+
+@media screen and (max-device-width:380px), screen and (max-width:380px) {
+  h4 {
+    font-size: 23px;
+  }
 }
