@@ -646,12 +646,14 @@ h2 {
     margin: 0 10px;
   }
 
-  
+  .content-inner {
+    position: relative;
+  } 
 
   .close {
-    font-size: 30px;
-    left: calc(100% - 30px);
-    top: 2px;
+    font-size: 35px;
+    left: calc(100% - 35px);
+    top: 5px;
   }
 
   .scroll-graphic{
